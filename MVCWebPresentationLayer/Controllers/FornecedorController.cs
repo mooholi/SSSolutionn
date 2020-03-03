@@ -4,6 +4,7 @@ using BLL.Interfaces;
 using Common;
 using DTO;
 using MVCWebPresentationLayer.Models;
+using NcMaster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,26 +51,41 @@ namespace MVCWebPresentationLayer.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Index()
+        //public async Task<ActionResult> Index()
+       // {
+            //try
+            //{
+            //    FornecedorService svc = new FornecedorService();
+
+            //    //List<FornecedorDTO> fornecedores = await svc.GetSuppliers(1, 10);
+
+            //    var configuration = new MapperConfiguration(cfg => { cfg.CreateMap<FornecedorDTO, FornecedorQueryViewModel>(); });
+
+            //    IMapper mapper = configuration.CreateMapper();
+
+            //   // List<FornecedorQueryViewModel> dados = mapper.Map<List<FornecedorQueryViewModel>>(fornecedores);
+
+            //    return View();
+            //}
+            //catch (Exception)
+            //{
+            //    return View();
+            //}
+       // }
+
+            public ActionResult Create (FornecedorInsertViewModel fornecedor)
+            {
+            return View();
+            }
+
+
+        [HttpPost]
+        public ActionResult PesquisaCEP(string cep)
         {
-            try
-            {
-                FornecedorService svc = new FornecedorService();
-
-                //List<FornecedorDTO> fornecedores = await svc.GetSuppliers(1, 10);
-
-                var configuration = new MapperConfiguration(cfg => { cfg.CreateMap<FornecedorDTO, FornecedorQueryViewModel>(); });
-
-                IMapper mapper = configuration.CreateMapper();
-
-               // List<FornecedorQueryViewModel> dados = mapper.Map<List<FornecedorQueryViewModel>>(fornecedores);
-
-                return View();
-            }
-            catch (Exception)
-            {
-                return View();
-            }
+            cep = cep.Replace("-", "");
+            CepRemoteService cepSvc = new CepRemoteService(cep);
+            var obj = new
+            return null;
         }
     }
 }

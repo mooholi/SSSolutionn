@@ -10,6 +10,7 @@ namespace DAO.Interfaces
     public interface IFornecedorRepository 
     {
         Task Create(FornecedorDTO fornecedor);
+        Task<List<FornecedorDTO>> GetFornecedors();
 
     }
 }

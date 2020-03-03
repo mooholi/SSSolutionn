@@ -110,6 +110,11 @@ namespace BLL.Impl
             }
 
         }
+
+        public Task<List<FornecedorDTO>> GetSuppliers(int page, int size)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

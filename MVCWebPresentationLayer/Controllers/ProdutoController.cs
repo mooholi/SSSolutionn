@@ -15,9 +15,14 @@ namespace MVCWebPresentationLayer.Controllers
 {
     public class ProdutoController : Controller
     {
+        FornecedorService fsvc = new FornecedorService();
+        CategoriaService csvc = new CategoriaService();
 
         public async Task<ActionResult> Cadastrar()
         {
+            List<FornecedorDTO> fornecedores = await fsvc.GetFornecedores();
+            List<FornecedorDTO> fornecedores = await fsvc.GetFornecedores();
+
             return View();
         }
 
