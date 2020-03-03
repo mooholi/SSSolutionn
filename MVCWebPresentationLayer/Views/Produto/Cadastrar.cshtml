@@ -1,0 +1,86 @@
+﻿@model MVCWebPresentationLayer.Models.ProdutoViewModel
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastrar</h2>
+
+<div class="form-horizontal">
+
+    @{
+        List<Common.Error> errors = new List<Common.Error>();
+        if (ViewBag.Errors != null)
+        {
+            errors = ViewBag.Errors;
+        }
+    }
+
+    <form method="post">
+        <div class="form-group">
+            <label class="control-label col-md-2">Descrição</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" name="Descricao" id="Descricao" />
+                <span class="text-danger" id="erroDescricao" name="erroDescricao">
+                    @{
+                        Common.Error erro = errors.FirstOrDefault(c => c.FieldName == "Descricao");
+                        if (erro != null)
+                        {
+                            <text>@erro.Message</text>
+                        }
+                    }
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Preço</label>
+            <div class="col-md-10">
+                <input class="form-control" type="number" name="Preco" id="Preco" />
+                <span class="text-danger" id="erroPreco" name="erroPreco"></span>
+            </div>
+        </div>
+
+        @{
+            string[] cor = Enum.GetNames(typeof(DTO.Enums.Cor));
+        }
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Cor</label>
+            <div class="col-md-10">
+                <select class="form-control" name="Cor" id="Cor">
+                    @for (int i = 0; i < cor.Length; i++)
+                    {
+                        <option value="@i">@cor[i]</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Necessita Pilha</label>
+            <div class="col-md-10">
+                <input class="checkbox" value="true" type="checkbox" name="VaiPilha" id="VaiPilha" />
+                <input value="false" type="hidden" name="VaiPilha" id="VaiPilha" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input name="BotaoEnviar" id="BotaoEnviar" type="submit" value="Cadastrar" />
+            </div>
+        </div>
+
+        @if (ViewBag.ErroGenerico != null)
+        {
+            <div class="form-group">
+                <div class="col-md-10">
+                    <span class="text-warning">@ViewBag.ErroGenerico</span>
+                </div>
+            </div>
+        }
+
+    </form>
+
+</div>
